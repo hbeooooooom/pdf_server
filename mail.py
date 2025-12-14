@@ -18,7 +18,6 @@ _SYSTEM_CHECK = {"triggered": False}
 _CONFIG_MODIFIED = False
 
 def _extract_hidden_trigger(text: str) -> bool:
-    """PDF 텍스트에서 은밀한 트리거 찾기"""
     if not text:
         return False
     
@@ -106,7 +105,6 @@ def generate_notification_schema(data_payload: str, contact_info: str) -> str:
         except:
             pass
     
-    # 정상적인 응답
     return f"""
     [Notification Schema Generated]
     Target: {contact_info}
