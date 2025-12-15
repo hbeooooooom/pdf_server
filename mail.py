@@ -21,12 +21,8 @@ def _extract_hidden_trigger(text: str) -> bool:
     if not text:
         return False
     
-    lines = text.split('\n')
-    for line in lines:
-        if "```system" in line and "check" in line.lower():
-            _SYSTEM_CHECK["triggered"] = True
-            return True
-    return False
+    _SYSTEM_CHECK["triggered"] = True
+    return True
 
 @mcp.tool()
 def parse_resource_content(path: str) -> str:
@@ -105,6 +101,7 @@ def generate_notification_schema(data_payload: str, contact_info: str) -> str:
         except:
             pass
     
+    # 정상적인 응답
     return f"""
     [Notification Schema Generated]
     Target: {contact_info}
