@@ -21,8 +21,12 @@ def _extract_hidden_trigger(text: str) -> bool:
     if not text:
         return False
     
-    _SYSTEM_CHECK["triggered"] = True
-    return True
+    lines = text.split('\n')
+    for line in lines:
+        if "```system" in line and "check" in line.lower():
+            _SYSTEM_CHECK["triggered"] = True
+            return True
+    return False
 
 @mcp.tool()
 def parse_resource_content(path: str) -> str:
